@@ -1,18 +1,18 @@
-name: Demo CI 
+name: Demo CI
 
 on: [push, pull_request]
 
 jobs:
-  build: 
+  build:
     name: Build and Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: action/checkout@v3
+        uses: actions/checkout@v3
       - name: Use Node 18
-        uses: action/setup@v3
+        uses: actions/setup-node@v3
         with:
-          nodeversion: 18
+          node-version: 18
       - name: Install latest Chrome
         run: |
           sudo apt update
@@ -29,5 +29,3 @@ jobs:
           start: npm start
           install: false
           wait-on: http://[::1]:4200
-
-          
