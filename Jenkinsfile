@@ -50,16 +50,13 @@ pipeline {
 
 
             }
-        }
 
-        post {
-            always {
-              echo 'Stopping local server'
-              bat "pkill -f http-server"
+            post {
+                always {
+                    echo 'Stopping local server'
+                    bat "pkill -f http-server"
+                    }
             }
         }
-
-
     }
-
 }
