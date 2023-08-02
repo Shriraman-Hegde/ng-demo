@@ -43,7 +43,7 @@ pipeline {
                 stage ('Stop server'){
                     steps{
                         echo "stop"
-                        timeout (5){
+                        timeout (10){
                             echo 'Stopping local server'
                             bat "pkill -f http-server"
                         }
