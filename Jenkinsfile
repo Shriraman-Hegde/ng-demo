@@ -30,7 +30,7 @@ pipeline {
             parallel{
                 stage('start local server'){
                     steps{
-                        bat "npm start"
+                        bat "npm start "
                     }
                 }
 
@@ -40,15 +40,15 @@ pipeline {
                         bat "npm run cypress:run"
                     }
                 }
-
-
-            }
-
-            post {
-                always {
-                    echo 'Stopping local server'
-                    bat "pkill -f http-server"
+                stage ('Stop server'){
+                    steps{
+                        echo "stop"
+                        timeout (5){
+                            echo 'Stopping local server'
+                            bat "pkill -f http-server"
+                        }
                     }
+                }
             }
         }
     }
