@@ -24,7 +24,7 @@ node {
         stage('start local server') {
                 // start local server in the background
                 // we will shut it down in "post" command block
-                bat "nohup npm run start &"
+                bat "npm run start"
         }
 
         stage('cypress tests') {
