@@ -10,7 +10,12 @@
     "e2e": "ng e2e",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "cy:run": "concurrently \"ng serve\" \"cypress run\""
+    "cy:run": "concurrently \"ng serve\" \"cypress run\"",
+    "cy:verify": "cypress verify",
+    "cy:info": "cypress info",
+    "cy:version": "cypress version",
+    "cy:cache:list": "cypress cache list",
+    "test1": "npm start & cypress run"
   },
   "private": true,
   "dependencies": {

@@ -20,8 +20,24 @@ node {
         bat "npm test -- --watch=false"
     }
 
-    stage('cypress tests') {
-        bat "npm start &"
-        bat "npm run cypress:run"
+    stages{
+        stage('start local server') {
+            steps {
+                // start local server in the background
+                // we will shut it down in "post" command block
+                bat "nohup npm run start &"
+            }
+        }
+
+        stage('cypress tests') {
+            bat "npm run cypress:run"
+        }
+
+        post {
+            always {
+              echo 'Stopping local server'
+              sh 'pkill -f http-server'
+            }
+        }
     }
 }
