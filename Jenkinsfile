@@ -20,7 +20,7 @@ node {
         bat "npm test -- --watch=false"
     }
 
-    stage{
+    stage('RUN'){
         stage('start local server') {
                 // start local server in the background
                 // we will shut it down in "post" command block
@@ -34,7 +34,7 @@ node {
         post {
             always {
               echo 'Stopping local server'
-              sh 'pkill -f http-server'
+              bat "pkill -f http-server"
             }
         }
     }
