@@ -1,34 +1,55 @@
-node {
-    def nodeHome = tool name: 'node-18', type:
-    'jenkins.plugins.nodejs.tools.NodeJSInstallation'
-    env.PATH = "${nodeHome}/bin:${env.PATH}"
-
-    stage('check tools') {
-        bat "node -v"
-        bat "npm -v"
-    }
-
-    stage('checkout') {
-        checkout scm
-    }
-
-    stage('npm install') {
-        bat "npm install"
-    }
-
-    stage('unit tests') {
-        bat "npm test -- --watch=false"
-    }
-
-    stage('RUN'){
-        stage('start local server') {
-                // start local server in the background
-                // we will shut it down in "post" command block
-                bat "npm run start"
+pipeline {
+    agent any 
+    stages{
+        stage('check tools') {
+            steps{
+                bat "node -v"
+                bat "npm -v"
+                }
         }
 
-        stage('cypress tests') {
-            bat "npm run cypress:run"
+        stage('checkout') {
+            steps{
+                checkout scm
+            }
+        }
+
+        stage('npm install'){
+            steps{
+                bat "npm install"
+            }
+        }
+
+        stage('unit tests'){
+            steps{
+            bat "npm test -- --watch=false"
+            }
+        }
+
+        stage('start local server'){
+            steps{
+                bat "npm start"
+            }
+        }
+
+        stage('cypress verify and test'){
+            parallel{
+                stage('cypress verify'){
+                    steps{
+                        echo "verify"
+                        bat "npm run cy:verify"
+                    }
+                }
+
+                stage('cypress test'){
+                    steps{
+                        echo "test"
+                        bat "npm run cypress:run"
+                    }
+                }
+
+
+            }
         }
 
         post {
@@ -37,5 +58,8 @@ node {
               bat "pkill -f http-server"
             }
         }
+
+
     }
+
 }
