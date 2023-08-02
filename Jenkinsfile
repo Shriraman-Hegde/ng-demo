@@ -21,7 +21,7 @@ node {
     }
 
     stage('cypress tests') {
-        bat "npm run cy:run"
-        exit 0
+        bat "npm start &"
+        bat "npm run cypress:run"
     }
 }
