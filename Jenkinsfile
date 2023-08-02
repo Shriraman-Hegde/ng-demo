@@ -26,18 +26,11 @@ pipeline {
             }
         }
 
-        stage('start local server'){
-            steps{
-                bat "npm start"
-            }
-        }
-
-        stage('cypress verify and test'){
+        stage('cypress start server and test'){
             parallel{
-                stage('cypress verify'){
+                stage('start local server'){
                     steps{
-                        echo "verify"
-                        bat "npm run cy:verify"
+                        bat "npm start"
                     }
                 }
 
