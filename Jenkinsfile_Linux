@@ -6,6 +6,7 @@ node {
     stage('check tools') {
         sh "node -v"
         sh "npm -v"
+        sh "google-chrome --version"
     }
     
     stage('checkout') {
@@ -14,7 +15,6 @@ node {
     
     stage('npm install') {
         sh "npm install"
-        sh "apt --only-upgrade install google-chrome-stable"
     }
 
     stage('unit tests') {
