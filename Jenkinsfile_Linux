@@ -14,6 +14,7 @@ node {
     
     stage('npm install') {
         sh "npm install"
+        sh "apt --only-upgrade install google-chrome-stable"
     }
 
     stage('unit tests') {
