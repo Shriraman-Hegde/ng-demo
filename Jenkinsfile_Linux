@@ -8,17 +8,17 @@ node {
         sh "npm -v"
         sh "google-chrome --version"
     }
-    
+
     stage('checkout') {
         checkout scm
     }
-    
+
     stage('npm install') {
         sh "npm install"
     }
 
     stage('unit tests') {
-        sh "npm test -- --watch=false"
+        sh "npm test --browsers=ChromeHeadless --watch=false"
     }
 
     stage('cypress tests') {
