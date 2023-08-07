@@ -19,7 +19,7 @@ node {
     }
 
     stage('unit tests') {
-        sh "xvfb-run npm test --browsers=ChromeHeadless --watch=false"
+        sh "xvfb-run npm test --browsers=ChromeHeadless -- --watch=false --source-map=false"
     }
 
     stage('cypress tests') {
