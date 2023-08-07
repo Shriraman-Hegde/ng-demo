@@ -7,6 +7,10 @@ import {FormsModule} from "@angular/forms";
 import {RouterTestingModule} from "@angular/router/testing";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {of} from "rxjs";
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -26,7 +30,8 @@ describe('SearchComponent', () => {
           }
         }
       ],
-      imports: [FormsModule, RouterTestingModule, HttpClientTestingModule]
+      imports: [FormsModule, RouterTestingModule, HttpClientTestingModule,
+      MatListModule, MatIconModule, MatInputModule, NoopAnimationsModule]
     }).compileComponents();
   });
 
