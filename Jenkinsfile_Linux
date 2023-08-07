@@ -14,11 +14,12 @@ node {
     }
 
     stage('npm install') {
+        sh "npm ci"
         sh "npm install"
     }
 
     stage('unit tests') {
-        sh "npm test --browsers=ChromeHeadless --watch=false"
+        sh "xvfb-run npm test --browsers=ChromeHeadless --watch=false"
     }
 
     stage('cypress tests') {
