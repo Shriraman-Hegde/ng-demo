@@ -1,5 +1,30 @@
-<h2 class="mt-2" xmlns="http://www.w3.org/1999/html">Search</h2>
-<form class="row g-2">
+<h2>Search</h2>
+<form>
+  <mat-form-field>
+    <input matInput type="search" name="query" placeholder="Search"
+      [(ngModel)]="query" (keyup.enter)="search()">
+  </mat-form-field>
+  <button mat-mini-fab (click)="search()"><mat-icon>search</mat-icon></button>
+</form>
+<mat-list *ngIf="searchResults?.length" flex>
+    <mat-list-item *ngFor="let person of searchResults; let i=index">
+        <div class="mat-list-item-text"> <br/><br/>
+          <div matListItemTitle><a [routerLink]="['/edit', person.id]">{{person.name}}</a></div>
+          <div matListItemLine>{{person.phone}}</div>
+          <div matListItemLine>{{person.address.street}}<br/>
+          {{person.address.city}}, {{person.address.state}}, {{person.address.zip}}</div>
+        </div>
+    </mat-list-item>
+</mat-list>
+
+
+
+
+
+
+
+<!--h2 class="mt-2" xmlns="http://www.w3.org/1999/html">Search</!--h2>
+<form!-- class="row g-2">
   <div class="col-auto">
   <input type="search" name="query" [(ngModel)]="query" (keyup.enter)="search()"
   placeholder="Search" class="form-control ml-2 mr-2">
@@ -7,14 +32,14 @@
   <div class="col-auto">
   <button type="button" (click)="search()">Search</button>
   </div>
-</form>
+</form!-->
 <!--
 <h2>Search All</h2>
 <button type="button" (click)="searchAll()">SearchAll</button>
 //The below would produce a json formatted as results
 <pre>{{searchResults | json}}</pre>
 !-->
-<table *ngIf="searchResults?.length" class="table">
+<!--table *ngIf="searchResults?.length" class="table">
   <thead>
   <tr>
     <th>Name</th>
@@ -31,4 +56,5 @@
     </td>
   </tr>
   </tbody>
-</table>
+</table!-->
+

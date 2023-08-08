@@ -1,4 +1,61 @@
-<div *ngIf="person" class="col-8">
+<div *ngIf="person">
+  <h3>{{person.name}}</h3>
+  <form (ngSubmit)="save()" #editfrom='ngForm'>
+    <div>
+      <label>Id:</label>
+      {{person.id}}
+    </div>
+    <p>
+      <mat-form-field>
+        <input matInput [(ngModel)]="person.name" name="name" id="name" placeholder="Name" required/>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input matInput [(ngModel)]="person.phone" name="phone" id="phone" placeholder="Phone" />
+      </mat-form-field>
+    </p>
+    <table>
+      <tr>
+        <td>
+          <mat-form-field>
+            <input matInput [(ngModel)]="person.address.street" name="street" id="street" placeholder="Street" />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field>
+            <input matInput [(ngModel)]="person.address.city" name="city" id="city" placeholder="City" />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field>
+            <input matInput #state [(ngModel)]="person.address.state" name="state" id="state" placeholder="State" maxlength="2" />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field>
+            <input matInput [(ngModel)]="person.address.zip" name="zip" #postalCode maxlength="5" id="zip" placeholder="Zip" />
+            <mat-hint aligin="end">{{postalCode.value.length/5}}</mat-hint>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+    <button mat-raised-button type="submit" color="primary" id="save" [disabled]="!editfrom.form.valid">Save</button>
+    <button mat-button id="cancel" (click)="cancel(); false">Cancel</button>
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!--div *ngIf="person" class="col-8">
   <h3 class="mt-2">{{person.name}}</h3>
   <form (ngSubmit)="save()" #editForm="ngForm">
   <div>
@@ -39,4 +96,4 @@
   <button type="submit" id="save" class="btn btn-primary" [disabled]="!editForm.form.valid">Save</button>
   <button (click)="cancel()" id="cancel" class="btn btn-light">Cancel</button>
   </form>
-</div>
+</div!-->
