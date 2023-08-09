@@ -15,6 +15,8 @@ import {MatInputModule} from "@angular/material/input";
 import {MatListModule} from "@angular/material/list";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { AuthRoutingModule } from './auth-routing.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     MatListModule,
     MatToolbarModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    AuthRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

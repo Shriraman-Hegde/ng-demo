@@ -1,6 +1,7 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { TestBed, waitForAsync, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { AuthModule } from '@auth0/auth0-angular';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
@@ -9,18 +10,25 @@ describe('AppComponent', () => {
   let fixture:ComponentFixture<AppComponent>;
   let dom;
   let button;
+  const config = {
+    domain: 'https://not-real.auth0.com',
+    clientId: 'fake-client-id',
+    redirectUri: 'http://localhost:4200'
+  };
 
-  beforeEach(async () => {await TestBed.configureTestingModule({
-    imports: [
-      RouterTestingModule,
-      MatListModule,
-      MatToolbarModule
-    ],
-    declarations: [
-      AppComponent
-    ],
-  }).compileComponents();
-});
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule,
+        MatListModule,
+        MatToolbarModule,
+        AuthModule.forRoot(config)
+      ],
+      declarations: [
+        AppComponent
+      ]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
