@@ -12,7 +12,7 @@ const config = {
     redirect_uri: window.location.origin + '/home',
   },
   httpInterceptor: {
-    allowedList: ['/api/*']
+    allowedList: ['/*']
   },
 };
 

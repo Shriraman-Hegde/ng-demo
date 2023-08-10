@@ -16,7 +16,6 @@ import {MatListModule} from "@angular/material/list";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AuthRoutingModule } from './auth-routing.module';
-import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
